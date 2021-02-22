@@ -19,6 +19,7 @@ import android.widget.LinearLayout
 import app.cash.paparazzi.Paparazzi
 import app.cash.paparazzi.DeviceConfig.Companion.NEXUS_5
 import app.cash.paparazzi.DeviceConfig.Companion.NEXUS_5_LAND
+import app.cash.paparazzi.DeviceConfig.Companion.NEXUS_7
 import app.cash.paparazzi.DeviceConfig.Companion.PIXEL_3
 import org.junit.Rule
 import org.junit.Test
@@ -26,6 +27,7 @@ import org.junit.Test
 class LaunchViewTest {
   @get:Rule
   var paparazzi = Paparazzi(deviceConfig = PIXEL_3)
+//  var paparazzi = Paparazzi(deviceConfig = NEXUS_7)
 
   @Test
   fun pixel3() {
@@ -53,5 +55,12 @@ class LaunchViewTest {
     val launch = paparazzi.inflate<LinearLayout>(R.layout.launch)
     paparazzi.snapshot(launch, "portrait", deviceConfig = NEXUS_5)
     paparazzi.snapshot(launch, "landscape", deviceConfig = NEXUS_5_LAND)
+  }
+
+  @Test
+  fun mix() {
+      val launch = paparazzi.inflate<LinearLayout>(R.layout.launch)
+      paparazzi.snapshot(launch, "pixel3", deviceConfig = PIXEL_3)
+      paparazzi.snapshot(launch, "nexus7", deviceConfig = NEXUS_7)
   }
 }
